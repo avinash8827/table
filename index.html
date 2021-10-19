@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>table</title>
+        <style>
+            body{
+                background-color: #1D1D1D; 
+            }
+            .m_form table{
+                width: 50% ;
+            }
+            .m_form input:not(.m_form input[type="submit"]),.m_form textarea{
+                background-color: #2B2B2B;
+                border:none;
+                width: 100%;
+                height: 50px;
+                padding-left: 20px;
+            }
+            .m_form input:focus{
+                outline: none;
+            }
+            .m_form textarea:focus{
+                outline: none;
+            }
+            input{
+                color:white;
+            }
+            textarea{
+                color: white;
+            }
+            input::placeholder{
+                color:white;
+            }
+            textarea::placeholder{
+                color: white;
+            }
+            .error{
+                color:red !important;
+            }
+            
+
+        </style>
+    </head>
+    <body>
+        <form action="" class="m_form" onsubmit="return m_submit()">
+            <table cellspacing="10" cellpadding="10">
+                <tr>
+                    <td colspan="2">
+                        <input type="text" name="fn" placeholder="Name" id="fn">
+                        <span class="error error_fn"></span>
+                    </td>
+                 </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="email" name="email" placeholder="Email" id="eamil">
+                        <span  class="error error_email"></span>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="text" name="sub" placeholder="Subject" id="sub">
+                        <span  class="error error_sub"></span>
+
+                    </td>
+                </tr>
+                <tr style=>
+                    <td colspan="2">
+                        <textarea name="msg" placeholder="Message" id="msg"></textarea>
+                        <span  class="error error_msg"></span>
+                    </td>
+                </tr>   
+                    <td colspan="2">
+                       <button type="submit" name="submit" style="float:right" >send message!</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <script>
+             //1. Function Defination
+             function m_submit(){
+                var n = document.querySelector('[name="fn"]').value;
+                var e = document.querySelector('[name="email"]').value;
+                var s = document.querySelector("[name='sub']").value;
+                let m = document.querySelector('[name="msg"]').value;
+                
+
+                //We are creating a global variable using var
+
+                var isValid = true;
+                if(n == ''){
+                    document.querySelector('.error_fn').innerHTML = 'Enter your Name';
+                    isValid = false;
+                }
+                if(e == ''){
+                    document.querySelector('.error_email').innerHTML = 'Enter your Email';
+                    isValid = false;
+                }
+                if(s == ''){
+                    document.querySelector('.error_sub').innerHTML = 'Enter your Subject';
+                    isValid = false;
+                }
+                if(m == ''){
+                    document.querySelector('.error_msg').innerHTML = 'Enter your Message';
+                    isValid = false;
+                }
+                if(isValid == true){
+                    return true
+                }else{
+                    return false;
+                } 
+            } 
+        </script>  
+    </body>
+</html>
