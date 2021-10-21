@@ -10,15 +10,16 @@
                 background-color: #1D1D1D; 
             }
             .m_form table{
-                width: 50% ;
+                width: 100% !important;
             }
-            .m_form input:not(.m_form input[type="submit"]),.m_form textarea{
+            .m_form input:not(.m_form button[type="submit"]),.m_form textarea{
                 background-color: #2B2B2B;
                 border:none;
                 width: 100%;
                 height: 50px;
                 padding-left: 20px;
             }
+        
             .m_form input:focus{
                 outline: none;
             }
@@ -40,7 +41,85 @@
             .error{
                 color:red !important;
             }
-            
+            td{
+                overflow: hidden;
+            }
+            input ~ span::after{
+                content: "";
+                display: block;
+                width: 0%;
+                height: 2px;
+                background-color: #08FDD8;
+                transition: all 0.2s ease-in-out;
+            }
+            input:focus ~ span::after {
+                width: 110%;
+                
+            }
+            textarea ~ span::after{
+                content: "";
+                display: block;
+                width: 0%;
+                height: 2px;
+                background-color:#08FDD8;
+                transition: all 0.3s ease-in-out;
+            }
+            textarea:focus ~ span::after {
+                width: 108%;   
+            }
+            button:focus input ~ span::after{
+                content: "";
+                display: block;
+                width: 0%;
+                height: 2px;
+                background-color: red;
+                transition: all 0.2s ease-in-out;
+            }
+            button:focus input:focus ~ span::after {
+                width: 110%;
+            }
+            button{
+                width: 220px;
+                height: 50px;
+                background-color: #1D1D1D;
+                border: 1px solid #08FDD8;
+                color: #08FDD8;
+           }
+           .a21{
+                width: 210px;
+                height: 50px;
+                border-radius: 0px;
+                border: none;
+                background-color: transparent;
+                outline: 1px solid #08fcd7;
+                color: #08fcd7;
+                float: right;
+                position: relative;
+                overflow: hidden;
+           }           
+            .a21 >div{
+                width: 230px;
+                height: 50px;
+                background-color: #08fcd7;
+                position: absolute;
+                top: 0px;
+                left: -250px;
+                transform: skewX(-20deg);
+                transition: all 0.2s linear;
+                z-index: 900;
+            }
+            .a21:focus >div{
+                left: -10px;
+                cursor: pointer;
+                
+            }
+            .a21:focus >span{
+                color: #1D1D1D;
+            }
+            .a21 > span{
+                position: relative;
+                z-index: 1000;
+            }
 
         </style>
     </head>
@@ -49,15 +128,12 @@
             <table cellspacing="10" cellpadding="10">
                 <tr>
                     <td colspan="2">
-                        <input type="text" name="fn" placeholder="Name" id="fn">
+                        <input type="text" name="fn" placeholder="Name" id="fn" class="i2">
                         <span class="error error_fn"></span>
                     </td>
-                 </tr>
-                <tr>
                     <td colspan="2">
-                        <input type="email" name="email" placeholder="Email" id="eamil">
+                        <input type="email" name="email" placeholder="Email" id="eamil" class="i3">
                         <span  class="error error_email"></span>
-
                     </td>
                 </tr>
                 <tr>
@@ -72,23 +148,25 @@
                         <textarea name="msg" placeholder="Message" id="msg"></textarea>
                         <span  class="error error_msg"></span>
                     </td>
-                </tr>   
+                </tr>  
+                <tr>
                     <td colspan="2">
-                       <button type="submit" name="submit" style="float:right" >send message!</button>
-                    </td>
+                        <button class="a21" type="submit">
+                            <span>send message!</span> 
+                             <div></div>
+                       
+
+                    </td>   
                 </tr>
             </table>
         </form>
         <script>
-             //1. Function Defination
              function m_submit(){
                 var n = document.querySelector('[name="fn"]').value;
                 var e = document.querySelector('[name="email"]').value;
                 var s = document.querySelector("[name='sub']").value;
                 let m = document.querySelector('[name="msg"]').value;
                 
-
-                //We are creating a global variable using var
 
                 var isValid = true;
                 if(n == ''){
